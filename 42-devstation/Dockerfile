@@ -21,6 +21,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt install -y \
 	vim \
 	john \
 	wget \
+ 	sudo \
 	openssh-server
 	
 WORKDIR /root
