@@ -63,7 +63,7 @@ case $choice in
         "================ GHIDRA INSTALLER ================"
         ""
         "Which parameter would you like to use?"
-        "-i for install, -u to delete archives, -r to reinstall"
+        "i for install, u to delete archives, r to reinstall"
         ""
         "Enter your choice (i/u/r): "
         )
