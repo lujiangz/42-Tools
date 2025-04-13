@@ -19,6 +19,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt install -y \
 	man \
 	valgrind \
 	vim \
+ 	dirb \
+  	nmap \
 	john \
 	wget \
  	sudo \
