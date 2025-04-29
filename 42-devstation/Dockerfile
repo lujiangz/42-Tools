@@ -2,7 +2,6 @@ FROM ubuntu:latest
 
 RUN apt-get clean
 RUN apt-get update
-RUN apt-get upgrade --fix-missing
 
 RUN DEBIAN_FRONTEND=noninteractive apt install -y \
 	gcc \
