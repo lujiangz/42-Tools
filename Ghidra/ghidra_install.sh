@@ -1,8 +1,8 @@
 #!/bin/bash
 
 ###############################################################################################################
-####                            Third party Ghidra Installer for Linux v1.0.1
-####                                Copyright (c) 2024 Asanka Akash Sovis
+####                            Third party Ghidra Installer for Linux v1.0.1
+####                                Copyright (c) 2024 Asanka Akash Sovis
 #### This program is released under the MIT License <https://github.com/asankaSovis/Ghidra_Installer/blob/main/LICENSE>
 #### Github Repository <https://github.com/asankaSovis/Ghidra_Installer>
 #### Created by Asanka Sovis on 14/04/2024
@@ -21,7 +21,7 @@ echo "Initializing..."
 
 ## DEFAULT PATH SETUP ----------------------------------------------------------------------------------------
 
-install_location="$goinfre/Apps"
+install_location="/sgoinfre/Ghidra_Installation"
 jdk_23_link="https://download.oracle.com/java/23/latest/jdk-23_linux-x64_bin.tar.gz"
 jdk_23_file=${jdk_23_link##*/}
 jdk_23_dir="jdk-23"
@@ -30,7 +30,7 @@ ghidra_file=${ghidra_link##*/}
 ghidra_dir="ghidra_11.0.3_PUBLIC"
 ghidra_ico="https://github.com/asankaSovis/Ghidra_Installer/blob/f179df1cfeaedb541bc9c65048f69b0cb8c7ea64/icon.png"
 current_dir="$(pwd)"
-Desktop_file_dir="$HOME/.local/share/applications/Ghidra.desktop"
+Desktop_file_dir="$install_location/Ghidra.desktop"
 
 ## ARGUMENT PARSE ----------------------------------------------------------------------------------------------
 
@@ -103,10 +103,10 @@ sleep 5" > "$ghidra_dir/appRun"
     echo "[Desktop Entry]
 Categories=Application;Development;
 Comment=Ghidra Software Reverse Engineering Suite
-Exec=$ghidra_dir/appRun
-Icon=$ghidra_dir/icon.png
+Exec=$install_location/$ghidra_dir/appRun
+Icon=$install_location/$ghidra_dir/icon.png
 Name=Ghidra
-Path=$ghidra_dir/
+Path=$install_location/$ghidra_dir/
 StartupNotify=false
 Terminal=false
 Type=Application" > "$Desktop_file_dir"
@@ -117,6 +117,8 @@ Type=Application" > "$Desktop_file_dir"
     rm -f "$jdk_23_file" "$ghidra_file" wget-log
 
     echo "Installation complete!"
+    echo "Ghidra has been installed into: $install_location"
+    echo "To run it from your applications menu, you might need to copy '$Desktop_file_dir' to a location your system recognizes."
     cd "$ghidra_dir"
     setsid ./appRun &
     sleep 5
@@ -136,8 +138,7 @@ then
     # REINSTALL MODE ------------------------------------------------------------------------
 
     echo "[1/4] Removing existing installation..."
-    cd "$install_location"
-    rm -rf "$jdk_23_dir" "$ghidra_dir" "$jdk_23_file" "$ghidra_file" "$Desktop_file_dir" wget-log
+    rm -rf "$install_location"
     
     echo "[2/4] Starting new installation..."
     bash "$0" -i  # Recursively call with install mode
